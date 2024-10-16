@@ -10,12 +10,15 @@ import {
   Rectangle,
 } from 'recharts';
 
-/**
- * Tableau de jours de la semaine
- * @type {string[]}
- */
 const DAYS = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 
+/**
+ * Component for rendering a line chart displaying session duration.
+ *
+ * @param {object} data - The data to be displayed in the chart.
+ * @param {Array} data.sessions - Array of session objects containing session length.
+ * @returns {ReactElement} The rendered line chart component.
+ */
 const ChartSessions = ({ data }) => {
     const CustomTooltip = ({ active, payload }) => {
       if (active && payload && payload.length) {
@@ -37,6 +40,13 @@ const ChartSessions = ({ data }) => {
     ),
   };
 
+  /**
+   * Custom cursor for LineChart
+   * @param {object} props
+   * @prop {object} points
+   * @prop {number} width
+   * @returns {ReactElement} Custom cursor element
+   */
   const CustomCursor = (props) => {
     const { points, width } = props;
     const { x } = points[0];
@@ -48,7 +58,7 @@ const ChartSessions = ({ data }) => {
         x={x}
         y={0}
         width={width}
-        height={230}
+        height={263}
       />
     );
   };
@@ -65,6 +75,10 @@ const ChartSessions = ({ data }) => {
     };
   }) : [];
 
+  /**
+   * Renders the legend for the SessionDuration chart
+   * @returns {ReactElement} The rendered legend
+   */
   const renderLegend = () => {
     return (
       <h3 className={style.title}>
@@ -76,7 +90,7 @@ const ChartSessions = ({ data }) => {
   };
 
   return (
-    <ResponsiveContainer width="100%" height={230} className={style.container}>
+    <ResponsiveContainer width="100%" height={255} className={style.container}>
       <LineChart
         data={dataUpdated}
         margin={{

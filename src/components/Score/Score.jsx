@@ -8,6 +8,13 @@ import {
   Legend,
 } from 'recharts';
 
+/**
+ * Component displaying a user score radial chart
+ * 
+ * @param {object} props Component props
+ * @param {number} props.data User score
+ * @returns {ReactElement} Radial chart element
+ */
 const Score = ({ data }) => {
   const dataUpdated = [
     {
@@ -16,7 +23,12 @@ const Score = ({ data }) => {
     },
   ];
 
-  const RenderCustomizedLegend = () => {
+/**
+ * Renders the objectives component displaying the user's progress towards their goal.
+ * 
+ * @returns {ReactElement} The objectives component
+ */
+  const Objectives = () => {
     return (
       <div className={styles.legendWrapper}>
         <p className={styles.legendWrapper__score}>
@@ -31,7 +43,7 @@ const Score = ({ data }) => {
   };
 
   return (
-    <ResponsiveContainer className={styles.container} width="30%" height={230}>
+    <ResponsiveContainer className={styles.container} width="100%" height={263}>
       <RadialBarChart
         width={700}
         height={230}
@@ -51,7 +63,7 @@ const Score = ({ data }) => {
           Score
         </text>
         <Legend
-          content={RenderCustomizedLegend}
+          content={Objectives}
           align="center"
           verticalAlign="middle"
         />

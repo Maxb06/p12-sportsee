@@ -2,6 +2,16 @@ import styles from './styles.module.scss';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @function
+ * @param {string} id - key of the nutrient to be displayed
+ * @param {number} value - value of the nutrient to be displayed
+ * @returns {ReactElement} - a ReactElement representing the nutrient icon, value and unity
+ * @description
+ * This function renders a nutrient icon, its value and unity. It takes two props: id and value.
+ * id is the key of the nutrient to be displayed and value is the value of the nutrient to be displayed.
+ * The function returns a ReactElement representing the nutrient icon, its value and unity.
+ */
 const NutrientsIcons = ({ id, value }) => {
     const [icon, setIcon] = useState();
     const [unity, setUnity] = useState('g');
@@ -44,35 +54,35 @@ const NutrientsIcons = ({ id, value }) => {
             setSmall('Calories');
             setColors({
                 color: '#ff0101',
-                //backgroundColor: 'rgba(255, 1, 1, 0.06)',
+                backgroundColor: '#FBFBFB',
             });
         } else if (id === 'proteinCount') {
             setIcon(proteinCountIcon);
             setSmall('Protéines');
             setColors({
                 color: '#4ab8ff',
-                //backgroundColor: 'rgba(74, 184, 255, 0.06)',
+                backgroundColor: '#FBFBFB',
             });
         } else if (id === 'carbohydrateCount') {
             setIcon(glucidCountIcon);
             setSmall('Glucides');
             setColors({
                 color: '#fdcc0c',
-                //backgroundColor: 'rgba(253, 204, 12, 0.1)',
+                backgroundColor: '#FBFBFB',
             });
         } else if (id === 'lipidCount') {
             setIcon(lipidCountIcon);
             setSmall('Lipides');
             setColors({
                 color: '#fd5181',
-                //backgroundColor: 'rgba(253, 81, 129, 0.1)',
+                backgroundColor: '#FBFBFB',
             });
         }
     }, [id]);
 
     return (
-        <div className={styles.nutrientContainer} style={colors}>
-            <div className={styles.iconContainer}>
+        <div className={styles.container} style={colors}>
+            <div className={styles.icon}>
                 {icon}
             </div>
             <div className={styles.detailsContainer}>

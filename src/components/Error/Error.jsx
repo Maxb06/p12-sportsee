@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
+/**
+ * Represents an error component displaying a 404 message.
+ */
 const Error = () => {
   return (
     <div className={styles.container}>
