@@ -1,26 +1,30 @@
 .container {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 258px;
+  height: 124px;
+  border-radius: 5px;
 
   &__icon {
     margin-right: 1.5rem;
     border-radius: 10px;
     padding: 1.8rem;
-
-    svg {
-      transform: scale(1.5);
-    }
   }
+}
 
-  &__values {
-    p {
-      font-size: 2rem;
-      font-weight: 700;
-    }
+.detailsContainer {
+  margin-left: 24px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  color: #282D30;
 
-    small {
-      font-weight: 500;
-      font-size: 1.4rem;
-    }
+  .small {
+    color: #74798C;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
   }
 }

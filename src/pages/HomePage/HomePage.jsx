@@ -56,7 +56,7 @@ function HomePage() {
           <p>Chargement des données activité...</p>
         )}
       </article>
-
+    <div className={styles.container__charts}>
       <article className={styles.container__sessions}>
         {sessions ? (
           <ChartSessions data={{ sessions: sessions }} />
@@ -80,6 +80,7 @@ function HomePage() {
           <p>Chargement des données du score...</p>
         )}
       </article>
+    </div>
 
       <article className={styles.container__nutrients}>
       {userData ? (

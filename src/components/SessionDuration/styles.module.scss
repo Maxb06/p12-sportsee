@@ -1,7 +1,18 @@
-.title {
-    font-size: 1rem;
+.container {
+  border-radius: 10px;
+  position: relative;
+
+  .title {
+    font-size: 1.5rem;
     font-weight: 500;
     color: #fff;
-    padding: 2rem 1.5rem 1rem;
+    padding: 1rem 1.5rem 1rem;
     opacity: 0.5;
   }
+
+  .lineChart {
+    &__label {
+      background-color: white;
+    }
+  }
+}

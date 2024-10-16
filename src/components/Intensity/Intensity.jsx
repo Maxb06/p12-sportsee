@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const KINDS = {
+const TOPIC = {
   1: 'Cardio',
   2: 'Energie',
   3: 'Endurance',
@@ -18,21 +18,28 @@ const KINDS = {
   6: 'Intensité',
 };
 
+/**
+ * Component displaying user intensity radar chart
+ * 
+ * @param {object} props 
+ * @param {object} props.data User intensity data
+ * @returns {ReactElement} Radar chart element
+ */
 const Intensity = ({ data }) => {
-  const dataUpdated = data.data.map((item) => {
+  const dataUpdated = data.data.map((item, index) => {
     return {
       ...item,
-      subject: KINDS[item.kind],
+      subject: TOPIC[index + 1],
     };
   }).reverse();
 
   return (
-    <ResponsiveContainer width="30%" height={230} className={styles.container}>
+    <ResponsiveContainer width="100%" height={220} className={styles.container}>
       <RadarChart data={dataUpdated} innerRadius="5%" outerRadius={window.innerWidth < 1200 ? '60%' : '80%'}>
         <PolarGrid gridType="polygon" radialLines={false} />
         <PolarAngleAxis
           dataKey="subject"
-          tick={{ fill: 'black', fontSize: 14 }}
+          tick={{ fill: 'white', fontSize: 14 }}
           tickSize={10}
           dy={5}
         />

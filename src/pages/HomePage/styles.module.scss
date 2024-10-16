@@ -1,12 +1,39 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 70px;
+  gap: 30px;
+  position: relative;
+
+  &__charts {
+    display: flex;
+    width: 66%;
+    justify-content: space-between;
+  }
 
   &__activity {
-    max-width: 835px;
     width: 66%;
     height: 320px;
+    background-color: #FBFBFB;
+  }
+
+  &__nutrients {
+    position: absolute;
+    right: 0;
+    top: 9%;
+  }
+
+  &__score {
+    width: 258px;
+    height: 263px;
+
+  }
+
+  &__intensity {
+    width: 258px;
+    height: 263px;
+    display: flex;
+    align-items: center;
+    background-color: #282D30;
   }
 
   &__sessions {
@@ -14,7 +41,6 @@
     background: #F00;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02);
     width: 258px;
-    height: 253px;
   }
 
   &__titleContainer {
