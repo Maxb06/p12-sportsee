@@ -15,19 +15,19 @@ import {
  * @param {object} props
  * @returns {ReactElement} Custom tooltip element
  */
-const CustomTooltip = ({ active, payload }) => {
+const CustomToolTip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
       <div className={styles.customTooltip}>
-        <p>{`${payload[0].value}kg`}</p>
-        <p>{`${payload[1].value}Kcal`}</p>
+        <p className={styles.customTooltip__text}>{`${payload[0].value}kg`}</p>
+        <p className={styles.customTooltip__text}>{`${payload[1].value}Kcal`}</p>
       </div>
     );
   }
   return null;
 };
 
-CustomTooltip.propTypes = {
+CustomToolTip.propTypes = {
   active: PropTypes.bool,
   payload: PropTypes.arrayOf(
     PropTypes.shape({
@@ -81,7 +81,7 @@ const DailyActivity = ({ data }) => {
           tickLine={false}
           tickCount={3}
         />
-        <Tooltip content={<CustomTooltip />} animationEasing="ease-out" />
+        <Tooltip content={<CustomToolTip />} animationEasing="ease-out" />
         <Bar
           dataKey="kilogram"
           fill="#282D30"

@@ -1,5 +1,6 @@
 import styles from './styles.module.scss';
 import logo from '../../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 /**
  * Component which displays the navigation bar
@@ -17,7 +18,7 @@ const NavHorizontal = () => {
             <nav className={styles.header__nav}>
                 <ul className={styles.header__nav__list}>
                     <li>
-                        <a href="#">Accueil</a>
+                        <Link to="/">Accueil</Link>
                     </li>
                     <li>
                         <a href="#">Profil</a>

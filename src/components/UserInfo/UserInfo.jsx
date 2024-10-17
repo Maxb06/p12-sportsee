@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import PropTypes from 'prop-types';
 
 /**
- * Displays the user's information.
+ * Displays the user's information. A SUPPRIMER PAR LA SUITE !!!!!!!!!!!!
  *
  * @param {Object} props
  * @param {Object} props.user the user's data object
