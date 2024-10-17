@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getApiUserData, getApiUserActivity, getApiUserAverageSessions, getApiUserPerformance } from '../../services/api';
-import UserName from '../../components/UserName/UserName';
+import { dataFactory } from '../../services/factory';
 import NutrientsList from '../../components/NutrientsList/NutrientsList';
 import DailyActivity from '../../components/DailyActivity/DailyActivity';
 import ChartSessions from '../../components/SessionDuration/SessionDuration';
@@ -17,30 +16,43 @@ function HomePage() {
   const [performance, setPerformance] = useState(null);
 
   useEffect(() => {
-    const user = getApiUserData(id);
-    if (user) {
-      setUserData(user); // Stock toutes les info utilisateur
-    }
+    const fetchData = async () => {
+      try {
+        const user = await dataFactory.getUserData(id);  
+        if (user) {
+          setUserData(user); 
+        }
 
-    const userActivity = getApiUserActivity(id); // Recup les données d'activité
-    if (userActivity) {
-      setActivity(userActivity); // Met à jour l'état avec les données activité
-    }
+        const userActivity = await dataFactory.getUserActivity(id); 
+        if (userActivity) {
+          setActivity(userActivity);
+        }
 
-    const userSessions = getApiUserAverageSessions(id); // Récup les données de session
-    if (userSessions) {
-      setSessions(userSessions); // Met à jour l'état avec les données de session
-    }
+        const userSessions = await dataFactory.getUserAverageSessions(id); 
+        if (userSessions) {
+          setSessions(userSessions);
+        }
 
-    const userPerformance = getApiUserPerformance(id);
-    if (userPerformance) {
-      setPerformance(userPerformance);
-    }
-  }, [id]);
+        const userPerformance = await dataFactory.getUserPerformance(id);
+        if (userPerformance) {
+          setPerformance(userPerformance); 
+        }
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      }
+    };
+
+    fetchData();
+  }, [id]); 
 
   return (
     <div className={styles.container}>
-      <UserName name={userData?.firstName || ''} />
+      <div className={styles.userName}>
+        <h1>
+          Bonjour <span>{userData?.firstName || ''}</span>
+        </h1>
+        <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+      </div>
 
       <article className={styles.container__activity}>
         <div className={styles.container__titleContainer}>
@@ -56,34 +68,35 @@ function HomePage() {
           <p>Chargement des données activité...</p>
         )}
       </article>
-    <div className={styles.container__charts}>
-      <article className={styles.container__sessions}>
-        {sessions ? (
-          <ChartSessions data={{ sessions: sessions }} />
-        ) : (
-          <p>Chargement des données des sessions...</p>
-        )}
-      </article>
 
-      <article className={styles.container__intensity}>
-        {performance ? ( 
-          <Intensity data={{ data: performance }} />
-        ) : (
-          <p>Chargement des données de performance...</p>
-        )}
-      </article>
+      <div className={styles.container__charts}>
+        <article className={styles.container__sessions}>
+          {sessions ? (
+            <ChartSessions data={{ sessions: sessions }} />
+          ) : (
+            <p>Chargement des données des sessions...</p>
+          )}
+        </article>
 
-      <article className={styles.container__score}>
-        {userData ? (
-          <Score data={userData.todayScore} />
-        ) : (
-          <p>Chargement des données du score...</p>
-        )}
-      </article>
-    </div>
+        <article className={styles.container__intensity}>
+          {performance ? ( 
+            <Intensity data={{ data: performance }} />
+          ) : (
+            <p>Chargement des données de performance...</p>
+          )}
+        </article>
+
+        <article className={styles.container__score}>
+          {userData ? (
+            <Score data={userData.todayScore} />
+          ) : (
+            <p>Chargement des données du score...</p>
+          )}
+        </article>
+      </div>
 
       <article className={styles.container__nutrients}>
-      {userData ? (
+        {userData ? (
           <NutrientsList list={userData.keyData} />
         ) : (
           <p>Chargement des données nutritionnelles...</p>
