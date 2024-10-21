@@ -71,7 +71,9 @@ const DailyActivity = ({ data }) => {
           tickSize="0"
           padding={{ left: -32, right: -33 }}
         />
+        {/* YAxis kilogram */}
         <YAxis
+          yAxisId="left"
           dataKey="kilogram"
           domain={['dataMin - 2', 'dataMax + 1']}
           allowDecimals={false}
@@ -81,13 +83,26 @@ const DailyActivity = ({ data }) => {
           tickLine={false}
           tickCount={3}
         />
+        {/* YAxis calories */}
+        <YAxis
+          yAxisId="right"
+          dataKey="calories"
+          domain={['dataMin - 50', 'dataMax + 50']} 
+          hide={true}  
+          tickLine={false}
+          axisLine={false}
+        />
         <Tooltip content={<CustomToolTip />} animationEasing="ease-out" />
+        {/* Bars kilogram */}
         <Bar
+          yAxisId="left"
           dataKey="kilogram"
           fill="#282D30"
           radius={[10, 10, 0, 0]}
         />
+        {/* Bars calories */}
         <Bar
+          yAxisId="right"
           dataKey="calories"
           fill="#E60000"
           radius={[10, 10, 0, 0]}
