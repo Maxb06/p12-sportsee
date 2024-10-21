@@ -16,34 +16,46 @@ function HomePage() {
   const [performance, setPerformance] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const user = await dataFactory.getUserData(id);  
-        if (user) {
-          setUserData(user); 
-        }
-
-        const userActivity = await dataFactory.getUserActivity(id); 
-        if (userActivity) {
-          setActivity(userActivity);
-        }
-
-        const userSessions = await dataFactory.getUserAverageSessions(id); 
-        if (userSessions) {
-          setSessions(userSessions);
-        }
-
-        const userPerformance = await dataFactory.getUserPerformance(id);
-        if (userPerformance) {
-          setPerformance(userPerformance); 
-        }
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
+  const fetchData = async () => {
+    try {
+      const user = await dataFactory.getUserData(id);  
+      if (user?.status) {
+        console.error(user);
+        setUserData(null);
+      } else {
+        setUserData(user);
       }
-    };
 
-    fetchData();
-  }, [id]); 
+      const userActivity = await dataFactory.getUserActivity(id); 
+      if (userActivity?.status) {
+        console.error(userActivity);
+        setActivity(null);
+      } else {
+        setActivity(userActivity);
+      }
+
+      const userSessions = await dataFactory.getUserAverageSessions(id); 
+      if (userSessions?.status) {
+        console.error(userSessions);
+        setSessions(null);
+      } else {
+        setSessions(userSessions);
+      }
+
+      const userPerformance = await dataFactory.getUserPerformance(id);
+      if (userPerformance?.status) {
+        console.error(userPerformance);
+        setPerformance(null);
+      } else {
+        setPerformance(userPerformance);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchData(); 
+}, [id]); 
 
   return (
     <div className={styles.container}>
@@ -63,7 +75,7 @@ function HomePage() {
           </ul>
         </div>
         {activity ? (
-          <DailyActivity data={activity} />
+          <DailyActivity data={activity.sessions} />
         ) : (
           <p>Chargement des données activité...</p>
         )}
@@ -72,7 +84,7 @@ function HomePage() {
       <div className={styles.container__charts}>
         <article className={styles.container__sessions}>
           {sessions ? (
-            <ChartSessions data={{ sessions: sessions }} />
+            <ChartSessions data={sessions} />
           ) : (
             <p>Chargement des données des sessions...</p>
           )}
@@ -80,7 +92,7 @@ function HomePage() {
 
         <article className={styles.container__intensity}>
           {performance ? ( 
-            <Intensity data={{ data: performance }} />
+            <Intensity data={performance} />
           ) : (
             <p>Chargement des données de performance...</p>
           )}
