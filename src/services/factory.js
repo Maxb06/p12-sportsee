@@ -1,6 +1,6 @@
-import { apiService } from './api';
+import { apiService } from './apiService';
 import { mockService } from './mockService';
 
-const useMock = true;  // false pour api
+const useMock = false;  // false pour api
 
 export const dataFactory = useMock ? mockService : apiService;
