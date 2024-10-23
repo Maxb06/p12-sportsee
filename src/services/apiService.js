@@ -4,12 +4,12 @@ import { GetModelPerformance } from '../models/PerformanceModel';
 import { GetModelSessions } from '../models/SessionsModel';
 import { GetModelApiError } from '../models/ApiErrorModel';
 
-const URL = 'http://localhost:3000/user';
+const URL = import.meta.env.VITE_API_URL;
 
 export const apiService = {
   async getUserData(userId) {
     try {
-      const response = await fetch(`${URL}/${userId}`);
+      const response = await fetch(`${URL}/user/${userId}`);
       if (!response.ok) {
         return GetModelApiError(
           response.status,
@@ -30,7 +30,7 @@ export const apiService = {
 
   async getUserActivity(userId) {
     try {
-      const response = await fetch(`${URL}/${userId}/activity`);
+      const response = await fetch(`${URL}/user/${userId}/activity`);
       if (!response.ok) {
         return GetModelApiError(
           response.status,
@@ -51,7 +51,7 @@ export const apiService = {
 
   async getUserAverageSessions(userId) {
     try {
-      const response = await fetch(`${URL}/${userId}/average-sessions`);
+      const response = await fetch(`${URL}/user/${userId}/average-sessions`);
       if (!response.ok) {
         return GetModelApiError(
           response.status,
@@ -72,7 +72,7 @@ export const apiService = {
 
   async getUserPerformance(userId) {
     try {
-      const response = await fetch(`${URL}/${userId}/performance`);
+      const response = await fetch(`${URL}/user/${userId}/performance`);
       if (!response.ok) {
         return GetModelApiError(
           response.status,

@@ -1,6 +1,6 @@
 import { apiService } from './apiService';
 import { mockService } from './mockService';
 
-const useMock = false;  // false pour api
+const useMock = import.meta.env.VITE_USE_MOCK === 'true';
 
 export const dataFactory = useMock ? mockService : apiService;

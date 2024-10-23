@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev:mock": "set VITE_USE_MOCK=true&& set VITE_API_URL=http://localhost:3000&& vite",
+    "dev:api": "set VITE_USE_MOCK=false&& set VITE_API_URL=http://localhost:3000&& vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
