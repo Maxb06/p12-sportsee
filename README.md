@@ -74,15 +74,21 @@ SportSee is a startup dedicated to fitness coaching. This application allows use
 3. To run the project, execute the following command: npm run dev
 The project will start running locally on http://localhost:5173.
 
+---
+
 ### 🔀 Switching Between Mock and API
 
 Mock Data: Run the project with mock data by using the command: npm run dev:mock
 API Data: Run the project with API data by using the command: npm run dev:api
 
+---
+
 ### ✨ Optional Features
 Export data in CSV format for further analysis.
 API documentation using Swagger.
 Unit testing to ensure data consistency and UI stability.
+
+---
 
 ### 🧪 Testing the Project
 1. Clone the back-end repository and follow its setup instructions.
@@ -90,8 +96,12 @@ Unit testing to ensure data consistency and UI stability.
 3. To test the project, run: npm run dev:mock or npm run dev:api
 This will launch the project with either mock data or real data, depending on your needs.
 
+---
+
 ### 🤝 Contributing
 Feel free to submit issues or pull requests for improvements. Contributions are welcome!
+
+---
 
 ### 👨‍💻 Author
 Developed by Maxime Brunet.
