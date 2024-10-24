@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import style from './styles.module.scss';
+import styles from './styles.module.scss';
 import {
   LineChart,
   Line,
@@ -23,8 +23,8 @@ const ChartSessions = ({ data }) => {
     const CustomTooltip = ({ active, payload }) => {
       if (active && payload && payload.length) {
         return (
-          <div className={style.lineChart}>
-            <p className={style.lineChart__label}>{`${payload[0].value} min`}</p>
+          <div className={styles.lineChart}>
+            <p className={styles.lineChart__label}>{`${payload[0].value} min`}</p>
           </div>
         );
       }
@@ -81,7 +81,7 @@ const ChartSessions = ({ data }) => {
    */
   const renderLegend = () => {
     return (
-      <h3 className={style.title}>
+      <h3 className={styles.title}>
         Durée moyenne des
         <br />
         sessions
@@ -90,7 +90,7 @@ const ChartSessions = ({ data }) => {
   };
 
   return (
-    <ResponsiveContainer width="100%" height={255} className={style.container}>
+    <ResponsiveContainer width="100%" height={263} className={styles.container}>
       <LineChart
         data={dataUpdated}
         margin={{
@@ -111,8 +111,10 @@ const ChartSessions = ({ data }) => {
           dataKey={'day'}
           tickLine={false}
           axisLine={false}
-          padding={{ left: 20, right: 20 }}
+          padding={{ left: 15, right: 15 }}
           tick={{ fill: '#FFFFFF', opacity: '0.5' }}
+          tickMargin={10}
+          height={35}
         />
         <Tooltip cursor={<CustomCursor />} content={<CustomTooltip />} />
         <Legend content={renderLegend} align="left" verticalAlign="top" />

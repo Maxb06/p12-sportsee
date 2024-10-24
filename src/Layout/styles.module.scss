@@ -2,7 +2,11 @@
     display: flex;
 
     .content {
-        padding: 68px 107px 10px 109px;
+        padding: 50px 100px 10px 100px;
         width: 100%;
+
+        @media screen and (max-width: 1024px) {
+            padding: 30px 10px 10px 20px;
+        }
     }
 }
