@@ -34,19 +34,23 @@ const Intensity = ({ data }) => {
   }).reverse();
 
   return (
-    <ResponsiveContainer width="100%" height={263} className={styles.intensity}>
+    <ResponsiveContainer width="100%" height={220} className={styles.container}>
       <RadarChart data={dataUpdated} innerRadius="5%" outerRadius={window.innerWidth < 1200 ? '60%' : '80%'}>
         <PolarGrid gridType="polygon" radialLines={false} />
         <PolarAngleAxis
           dataKey="subject"
-          tick={{ fill: 'white', fontSize: 12 }}
-          tickSize={10}
-          dy={5}
+          tick={{ 
+            fill: 'white', 
+            fontSize: 12, 
+            fontWeight: 500, 
+          }}
+          tickSize={15}
+          dy={4}
         />
         <PolarRadiusAxis
           tick={false}
           axisLine={false}
-          tickCount={6}
+          tickCount={5}
         />
         <Radar
           dataKey="value"

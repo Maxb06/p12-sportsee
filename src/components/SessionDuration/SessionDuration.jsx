@@ -119,7 +119,7 @@ const ChartSessions = ({ data }) => {
         <Tooltip cursor={<CustomCursor />} content={<CustomTooltip />} />
         <Legend content={renderLegend} align="left" verticalAlign="top" />
         <Line
-          type="monotone"
+          type="basis"
           dataKey="sessionLength"
           stroke="url(#colorGradiant)"
           strokeWidth={3}
