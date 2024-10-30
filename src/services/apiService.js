@@ -7,6 +7,15 @@ import { GetModelApiError } from '../models/ApiErrorModel';
 const URL = import.meta.env.VITE_API_URL;
 
 export const apiService = {
+  /**
+   * Fetches user data from the API using the provided user ID.
+   * If the response status is not OK, returns an API error model.
+   * If the response can't be parsed as JSON, returns an API error model with a 500 status.
+   * Otherwise, returns a user model created from the response data.
+   *
+   * @param {string} userId - The user ID to fetch data for
+   * @returns {Object} A user model or an API error model
+   */
   async getUserData(userId) {
     try {
       const response = await fetch(`${URL}/user/${userId}`);
@@ -28,6 +37,15 @@ export const apiService = {
     }
   },
 
+  /**
+   * Fetches user activity data from the API using the provided user ID.
+   * If the response status is not OK, returns an API error model.
+   * If the response can't be parsed as JSON, returns an API error model with a 500 status.
+   * Otherwise, returns an activity model created from the response data.
+   *
+   * @param {string} userId - The user ID to fetch data for
+   * @returns {Object} An activity model or an API error model
+   */
   async getUserActivity(userId) {
     try {
       const response = await fetch(`${URL}/user/${userId}/activity`);
@@ -49,6 +67,15 @@ export const apiService = {
     }
   },
 
+  /**
+   * Fetches user average sessions data from the API using the provided user ID.
+   * If the response status is not OK, returns an API error model.
+   * If the response can't be parsed as JSON, returns an API error model with a 500 status.
+   * Otherwise, returns a sessions model created from the response data.
+   *
+   * @param {string} userId - The user ID to fetch data for
+   * @returns {Object} A sessions model or an API error model
+   */
   async getUserAverageSessions(userId) {
     try {
       const response = await fetch(`${URL}/user/${userId}/average-sessions`);
@@ -70,6 +97,15 @@ export const apiService = {
     }
   },
 
+  /**
+   * Fetches user performance data from the API using the provided user ID.
+   * If the response status is not OK, returns an API error model.
+   * If the response can't be parsed as JSON, returns an API error model with a 500 status.
+   * Otherwise, returns a performance model created from the response data.
+   *
+   * @param {string} userId - The user ID to fetch data for
+   * @returns {Object} A performance model or an API error model
+   */
   async getUserPerformance(userId) {
     try {
       const response = await fetch(`${URL}/user/${userId}/performance`);

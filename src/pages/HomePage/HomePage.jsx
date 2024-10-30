@@ -8,6 +8,18 @@ import Intensity from '../../components/Intensity/Intensity';
 import Score from '../../components/Score/Score';
 import styles from './styles.module.scss';
 
+/**
+ * HomePage component that displays user information, daily activity, session duration,
+ * intensity radar chart, score radial chart, and nutritional data.
+ *
+ * Utilizes React Router's useParams to extract the user ID from the URL.
+ * Fetches and displays user data, activity, sessions, and performance using
+ * the provided user ID. Updates the component state with the fetched data,
+ * or logs an error and sets state to null if fetching fails.
+ *
+ * @component
+ * @returns {ReactElement} The HomePage component
+ */
 function HomePage() {
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
@@ -16,6 +28,15 @@ function HomePage() {
   const [performance, setPerformance] = useState(null);
 
   useEffect(() => {
+/**
+ * Fetches user data, activity, sessions, and performance information
+ * from the data source using the provided user ID.
+ * 
+ * Sets the corresponding state for each data type. If any data fetching
+ * results in an error status, logs the error and sets the state to null.
+ * 
+ * @returns {void}
+ */
   const fetchData = async () => {
     try {
       const user = await dataFactory.getUserData(id);  
